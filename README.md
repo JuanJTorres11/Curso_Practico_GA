@@ -9,7 +9,7 @@
 
 # Curso Básico de GitHub Actions
 
-_Crea tu primer flujo de CI/CD para tus proyectos con GitHub Actions_
+_Aprende los conceptos básicos para crear tu primer flujo de CI/CD para tus proyectos con GitHub Actions_
 
 <!--
   <<< Author notes: Start of the course >>>
@@ -20,7 +20,7 @@ _Crea tu primer flujo de CI/CD para tus proyectos con GitHub Actions_
   Do not use quotes on the <details> tag attributes.
 -->
 
-<details id=0>
+<details id=0 open>
 <summary><h2>Bienvenido</h2></summary>
 
 ¡Bienvenido al Curso Básico de GitHub Actions de Platzi! en este curso aprenderás a realizar flujos de Integración y Despliegue Continúo (CI/CD) para tus proyectos personales, así como automatizar cualquier proceso que que te ayude a impulsar tu flujo de trabajo :rocket:.
@@ -52,7 +52,7 @@ _Crea tu primer flujo de CI/CD para tus proyectos con GitHub Actions_
   TBD-step-1-notes.
 -->
 
-<details id=1 open>
+<details id=1>
 <summary><h2>Paso 1: Crea tu primer workflow file</h2></summary>
 
 _¡Bienvenido al "Curso Básico de GitHub Actions"! :wave:_
@@ -76,8 +76,50 @@ Primero, aprenderemos los conceptos básicos de GitHub Actions
 ### :keyboard: Actividad: Crea un workflow file
 
 1. Abra una nueva pestaña del navegador y siga los pasos de la segunda pestaña mientras lee las instrucciones de esta pestaña.
-1. TBD-paso-1-instrucciones.
+1. Cree un Pull Request para ver todos los cambios que realizará a lo largo de este curso. Haga clic en la pestaña *Pull Requests*, haga clic en *New Pull Request*, establezca `base: main` y `compare: hola-mundo`.
+1. Vaya a la pestaña *Code*.
+1. En el menú desplegable de la rama *main*, haga clic en la rama *hola-mundo*.
+1. Navegue a la carpeta `.github/workflows/`, luego seleccione *Add file** y haga clic en **Create new file**.
+1. En el campo **Name your file...**, ingrese `hola-mundo.yml`.
+1. Con lo aprendido hasta el momento, crea un workflow file que corra un archivo básico de tu lenguaje de programación favorito que imprima un "Hola Mundo".
 1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
+
+<details id=1.1>
+<summary><h3>Ayuda</h2></summary>
+  
+Agregue el siguiente contenido al archivo `hola-mundo.yml`:
+   ```yaml
+   name: aprendiendo-github-actions
+   run-name: ¡Estoy aprendiendo GitHub Actions!
+   on: [push]
+   jobs:
+     hola-mundo:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout
+           uses: actions/checkout@v3
+         - name: Definir variable
+           run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+         - name: Correr script
+           run: python hola_mundo.py
+   ```
+ Crea un archivo llamado `hola_mundo.py` en la raiz del repositorio y agrega el siguiente contenido:
+   ```python
+   import os
+
+
+   def main():
+       nombre = os.getenv("USERNAME")
+       print(f"¡Hola, {nombre} desde GitHub!")
+
+
+   if __name__ == "__main__":
+       main()
+   ```
+  
+</details>
+
+
 
 </details>
 
