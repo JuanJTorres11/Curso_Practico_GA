@@ -79,7 +79,7 @@ Primero, aprenderemos los conceptos básicos de GitHub Actions
 1. Cree un Pull Request para ver todos los cambios que realizará a lo largo de este curso. Haga clic en la pestaña *Pull Requests*, haga clic en *New Pull Request*, establezca `base: main` y `compare: hola-mundo`.
 1. Vaya a la pestaña *Code*.
 1. En el menú desplegable de la rama *main*, haga clic en la rama *hola-mundo*.
-1. Navegue a la carpeta `.github/workflows/`, luego seleccione *Add file** y haga clic en **Create new file**.
+1. Navegue a la carpeta `.github/workflows/`, luego seleccione **Add file** y haga clic en **Create new file**.
 1. En el campo **Name your file...**, ingrese `hola-mundo.yml`.
 1. Con lo aprendido hasta el momento, crea un workflow file que corra un archivo básico de tu lenguaje de programación favorito que imprima un "Hola Mundo".
 1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
