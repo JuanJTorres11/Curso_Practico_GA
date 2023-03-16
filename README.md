@@ -7,9 +7,9 @@
   Add your open source license, GitHub uses Creative Commons Attribution 4.0 International.
 -->
 
-# TBD-course-name
+# Curso Básico de GitHub Actions
 
-_TBD-course-description_
+_Crea tu primer flujo de CI/CD para tus proyectos con GitHub Actions_
 
 <!--
   <<< Author notes: Start of the course >>>
@@ -21,25 +21,25 @@ _TBD-course-description_
 -->
 
 <details id=0>
-<summary><h2>Welcome</h2></summary>
+<summary><h2>Bienvenido</h2></summary>
 
-TBD-welcome-paragraph
+¡Bienvenido al Curso Básico de GitHub Actions de Platzi! en este curso aprenderás a realizar flujos de Integración y Despliegue Continúo (CI/CD) para tus proyectos personales, así como automatizar cualquier proceso que que te ayude a impulsar tu flujo de trabajo :rocket:.
 
-- **Who is this for**: TBD-audience.
-- **What you'll learn**: TBD-objective.
-- **What you'll build**: TBD-result.
-- **Prerequisites**: TBD-prerequisites.
-- **How long**: This course is TBD-step-count steps long and takes less than TBD-duration to complete.
+- **¿Para quíen es este curso?**: Desarrolladores backend, frontend y Full Stack; DevOps; SREs, Estudiantes, Líderes de equipo, cualquier usuario de GitHub.
+- **¿Qué aprenderás?**: Aprenderás a automatizar los procesos de compilación, pruebas y despliegue de sus proyectos.
+- **¿Qué construirás?**: Una serie de flujos de trabajo que usen los principales conceptos detrás de GitHub Actions (Jobs, Steps, Actions, Variables, Expresiones, entre otros).
+- **Prerequisitos**: Conocimientos básicos sobre Git y GitHub (realizar commits y push; crear pull requests e issues; agregar etiquetas).
+- **Duración**: Este curso tendrá X pasos y lo podrás terminar en Y horas.
 
-## How to start this course
+## ¿Cómo iniciar el curso?
 
-1. Right-click **Start course** and open the link in a new tab.
+1. Haz click derecho en **Start course** y abre el enlace en una nueva pestaña.
    <br />[![start-course](https://user-images.githubusercontent.com/1221423/218596841-0645fe1a-4aaf-4f51-9ab3-8aa2d3fdd487.svg)](TBD-generate)
-2. In the new tab, follow the prompts to create a new repository.
-   - For owner, choose your personal account or an organization to host the repository.
-   - We recommend creating a public repository—private repositories will [use Actions minutes](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
+2. En la nueva pestaña, llena los campos para crear un nuevo repositorio.
+   - En owner, elige tu cuenta personal o la de tu organización.
+   - Es recomendado dejar el repositorio como público ya que los privados consumen [minutos que pueden ser cobrados](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
    ![Create a new repository](https://user-images.githubusercontent.com/1221423/218594143-e60462b6-9f2a-4fa3-80de-063ac5429aab.png)
-3. After your new repository is created, wait about 20 seconds, then refresh the page. Follow the step-by-step instructions in the new repository's README.
+3. Después de que el nuevo repositorio ha sido creado, espera por cerca de 20 segundos; luego, recarga la página. Sigue los pasos que aparezcan en el README del repositorio.
 
 </details>
 
@@ -53,19 +53,31 @@ TBD-welcome-paragraph
 -->
 
 <details id=1 open>
-<summary><h2>Step 1: TBD-step-1-name</h2></summary>
+<summary><h2>Paso 1: Crea tu primer workflow file</h2></summary>
 
-_Welcome to "TBD-course-name"! :wave:_
+_¡Bienvenido al "Curso Básico de GitHub Actions"! :wave:_
 
-TBD-step-1-information
+Primero, aprenderemos los conceptos básicos de GitHub Actions
 
-**What is _TBD-term-1_**: TBD-definition-1
+**¿Qué es GitHub Actions?**: Es una plataforma de integración y despliegue continuo (CI/CD) que permite automatizar procesos de compilación, pruebas y despliegue.
 
-### :keyboard: Activity: TBD-step-1-name
+**¿Qué es un Workflow?**: Es un proceso automatizado configurable que ejecutará uno o más jobs. Se define como un archivo YAML en el directorio .github/workflows de tu repositorio y se ejecutará cuando lo active un evento.
 
-1. Open a new browser tab, and work on the steps in your second tab while you read the instructions in this tab.
-1. TBD-step-1-instructions.
-1. Wait about 20 seconds then refresh this page for the next step.
+**¿Qué es un Event?**: Actividad específica en un repositorio, la cual activa una ejecución de un workflow.
+
+**¿Qué es un Job?**: Conjunto de tareas (steps) en un workflow que se ejecutan en el mismo runner.
+
+**¿Qué es un Runner?**: Servidor que ejecuta los workflows. GitHub provee runners de Ubuntu, Windows y MacOS.
+
+**¿Qué es un Step?**: Puede ser: un script/comando de shell o un action que se ejecutará.
+
+**¿Qué es un Action?**: Aplicación personalizada que realiza una tarea compleja repetitiva.
+
+### :keyboard: Actividad: Crea un workflow file
+
+1. Abra una nueva pestaña del navegador y siga los pasos de la segunda pestaña mientras lee las instrucciones de esta pestaña.
+1. TBD-paso-1-instrucciones.
+1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
 
 </details>
 
@@ -77,18 +89,25 @@ TBD-step-1-information
 -->
 
 <details id=2>
-<summary><h2>Step 2: TBD-step-2-name</h2></summary>
+<summary><h2>Paso 2: Aprende sobre los diferentes Triggers</h2></summary>
 
-_You did TBD-step-1-name! :tada:_
+_¡Creaste tu primer Workflow! :tada:_
 
-TBD-step-2-information
+Ahora que conoces los componentes básicos de un workflow en GitHub Actions podemos empezar a explorar nuevos conceptos. El primero será ver los principales _eventos_ o _Triggers_ para lanzar un nuevo workflow.
 
-**What is _TBD-term-2_**: TBD-definition-2
+**¿Qué eventos exploraremos?**
 
-### :keyboard: Activity: TBD-step-2-name
+- push
+- pull_request
+- issues
+- issue_comment
+- workflow_dispatch
+- schedule
 
-1. TBD-step-2-instructions.
-1. Wait about 20 seconds then refresh this page for the next step.
+### :keyboard: Actividad: Expermienta con los distintos Triggers
+
+1. TBD-paso-2-instrucciones.
+1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
 
 </details>
 
@@ -100,18 +119,20 @@ TBD-step-2-information
 -->
 
 <details id=3>
-<summary><h2>Step 3: TBD-step-3-name</h2></summary>
+<summary><h2>Paso 3: Aprende a usar Expresiones</h2></summary>
 
-_Nice work finishing TBD-step-2-name :sparkles:_
+_¡Buen trabajo usando los distintos eventos para lanzar nuevos workflows! :sparkles:_
 
-TBD-step-3-information
+Ahora que conoces como lanzar distintos workflows con los principales tipos de eventos es importante sacar provecho del uso de _Expresiones_ en nuestros workflow files para obtener mayor versatilidad y opciones.
 
-**What is _TBD-term-3_**: TBD-definition-3
+**¿Qué son las expresiones?**: Es una forma de configurar variables de entorno y acceder al contexto. Usan una sintaxis especial ${{ <expresión> }} 
 
-### :keyboard: Activity: TBD-step-3-name
+Puedes combinar valores literales, referencias de contexto y funciones usando operadores o condicionales.
 
-1. TBD-step-3-instructions.
-1. Wait about 20 seconds then refresh this page for the next step.
+### :keyboard: Actividad: Crea tus primeras Expresiones
+
+1. TBD-paso-3-instrucciones.
+1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
 
 </details>
 
@@ -123,18 +144,29 @@ TBD-step-3-information
 -->
 
 <details id=4>
-<summary><h2>Step 4: TBD-step-4-name</h2></summary>
+<summary><h2>Paso 4: Aprende a usar los distintos Contextos</h2></summary>
 
-_Nicely done TBD-step-3-name! :partying_face:_
+_¡Excelente trabajo con el uso de Expresiones! :partying_face:_
 
-TBD-step-4-information
+Como ya vimos, mediante el uso de Expresiones podemos acceder a información de formá dinámica durante la ejecución de nuestros workflows. Una de las fuentes más importantes de información usada es la que nos brindan los contextos.
 
-**What is _TBD-term-4_**: TBD-definition-4
+**¿Qué son los contextos?**: Es una manera de acceder a información acerca de las ejecuciones de workflows, variables, entornos de runners, jobs y steps. Cada contexto es un objeto que contiene propiedades.
 
-### :keyboard: Activity: TBD-step-4-name
+Los más usados son:
 
-1. TBD-step-4-instructions.
-1. Wait about 20 seconds then refresh this page for the next step.
+- github
+- env
+- vars
+- job
+- steps
+- runner
+- secrets
+- inputs
+
+### :keyboard: Actividad: Usa los diferentes contextos
+
+1. TBD-paso-4-instrucciones.
+1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
 
 </details>
 
@@ -146,16 +178,18 @@ TBD-step-4-information
 -->
 
 <details id=5>
-<summary><h2>Step 5: TBD-step-5-name</h2></summary>
+<summary><h2>Paso 5: Aprende a usar las Variables de Entorno</h2></summary>
 
-_Almost there TBD-step-4-name! :heart:_
+¡Ya estás a un paso de terminar! :heart:
 
-TBD-step-5-information
+El uso de variables de entorno es lo único que te falta por aprender de los principales conceptos y componentes de GitHub Actions, así que vamos a por ello.
 
-### :keyboard: Activity: TBD-step-5-name
+**¿Qué son las variables?**: Son una manera de almacenar y reutilizar información de configuración no confidencial. Tales como datos de configuración, como marcas del compilador, nombres de usuario o nombres de servidor como variables.
 
-1. TBD-step-5-instructions.
-1. Wait about 20 seconds then refresh this page for the next step.
+### :keyboard: Actividad: Usa variables de entorno en tu workflow
+
+1. TBD-paso-5-instrucciones.
+1. Espere unos 20 segundos y luego actualice esta página.
 
 </details>
 
@@ -165,23 +199,33 @@ TBD-step-5-information
 -->
 
 <details id=X>
-<summary><h2>Finish</h2></summary>
+<summary><h2>Cierre</h2></summary>
 
-_Congratulations friend, you've completed this course!_
+_¡Felicidades! haz completado esta sección del Curso Básico de GitHub Actions de Platzi 💚_
 
 <img src=TBD-celebrate-image alt=celebrate width=300 align=right>
 
-Here's a recap of all the tasks you've accomplished in your repository:
+Ya conoces los principales conceptos para crear workflows que te sirvan para automatizar todo tipo de tareas incluidas las de integración y despliegue continúo.
 
-- TBD-recap.
+Has aprendido sobre:
 
-### What's next?
+- Qué son Worfklows.
+- Qué son Events.
+- Qué son Jobs.
+- Qué son Runners.
+- Qué son Steps.
+- Qué son Ations.
+- Cuál es la sintaxis de un workflow file.
+- Cuáles son los principales Triggers.
+- Uso de Expresiones.
+- Acceder a información de Contextos.
+- El uso de variables para acceder a información reutilizable.
 
-- TBD-continue.
-- [We'd love to hear what you thought of this course](TBD-feedback-link).
-- [Take another TBD-organization Course](https://github.com/TBD-organization).
-- [Read the GitHub Getting Started docs](https://docs.github.com/en/get-started).
-- To find projects to contribute to, check out [GitHub Explore](https://github.com/explore).
+### ¿Qué sigue?
+
+- Puedes crear flujos de Integración Continúa (CI) para tus proyectos.
+- Puedes crear flujos de Despliegue (CD para tus proyectos.
+- Puedes automatizar todo tipo de tareas en tus repositorios para mantener un mejor orden y control.
 
 </details>
 
@@ -192,6 +236,4 @@ Here's a recap of all the tasks you've accomplished in your repository:
 
 ---
 
-Get help: [TBD-support](TBD-support-link) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2022 TBD-copyright-holder &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [CC-BY-4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)
+&copy; 2023 Platzi &bull; [Código de Conducta](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [CC-BY-4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)
