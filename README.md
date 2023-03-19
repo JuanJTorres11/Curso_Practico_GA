@@ -352,8 +352,34 @@ El uso de variables de entorno es lo único que te falta por aprender de los pri
 
 ### :keyboard: Actividad: Usa variables de entorno en tu workflow
 
-1. TBD-paso-5-instrucciones.
-1. Espere unos 20 segundos y luego actualice esta página.
+1. Vuelve a la rama en que estabamos trabajando (*aprendiendo-github-actions*).
+1. Navegue a la carpeta `.github/workflows/`, luego seleccione **Add file** y haga clic en **Create new file**.
+1. En el campo **Name your file...**, ingrese `variables.yml`.
+1. Crea un workflow que incluya el uso de variables.
+1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
+
+  <details id=1.1>
+  <summary><h3>Ayuda</h2></summary>
+    
+  Agregue el siguiente contenido al archivo `variables.yml`:
+  ```yaml
+  name: Saludo usando variables
+  on:
+    workflow_dispatch
+  env:
+    DIA_DE_SEMANA: Lunes
+  jobs:
+    saludo-variables:
+      runs-on: ubuntu-latest
+      env:
+        SALUDO: Hola
+      steps:
+        - name: Saludar
+          run: echo "$SALUDO, $NOMBRE. Hoy es $DIA_DE_SEMANA!"
+          env:
+            NOMBRE: Juan
+  ```
+  </details>
 
 </details>
 

@@ -1,4 +1,4 @@
-name: Step 5, TBD-step-5-name
+name: Paso 5, Aprende a usar las Variables de Entorno
 
 # This step triggers after TBD-step-5-event-desc
 # This step sets STEP to X
@@ -20,21 +20,21 @@ permissions:
 jobs:
   # Get the current step from .github/script/STEP so we can
   # limit running the main job when the learner is on the same step.
-  get_current_step:
-    name: Check current step number
+  obtener_paso_actual:
+    name: Verificar paso actual
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - id: get_step
+      - id: obtener_paso
         run: |
-          echo "current_step=$(cat ./.github/script/STEP)" >> $GITHUB_OUTPUT
+          echo "paso_actual=$(cat ./.github/script/STEP)" >> $GITHUB_OUTPUT
     outputs:
-      current_step: ${{ steps.get_step.outputs.current_step }}
+      paso_actual: ${{ steps.obtener_paso.outputs.paso_actual }}
 
-  on_TBD-step-5-event:
-    name: On TBD-step-5-event
-    needs: get_current_step
+  aprende_variables:
+    name: Aprende a usar las Variables de Entorno
+    needs: obtener_paso_actual
 
     # We will only run this action when:
     # 1. This repository isn't the template repository
@@ -43,7 +43,7 @@ jobs:
     # Reference https://docs.github.com/en/actions/learn-github-actions/expressions
     if: >-
       ${{ !github.event.repository.is_template
-          && needs.get_current_step.outputs.current_step == 5 }}
+          && needs.obtener_paso_actual.outputs.paso_actual == 5 }}
 
     # We'll run Ubuntu for performance instead of Mac or Windows
     runs-on: ubuntu-latest
@@ -55,14 +55,19 @@ jobs:
         with:
           fetch-depth: 0 # Let's get all the branches
 
-      # TBD-step-5-additional-steps
+      # Verify the learner added the file contents
+      - name: Verificar contenido del nuevo workflow
+        run: ./.github/script/check-file.sh
+        env:
+          FILE: ".github/workflows/variables.yml"
+          SEARCH: "name:"
 
       # Update README to close <details id=5> and open <details id=X>
       # and set STEP to 'X'
-      - name: Update to step X
+      - name: Actualizar a paso X
         uses: skills/action-update-step@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 5
           to_step: X
-          branch_name: tbd-branch-name
+          branch_name: aprendiendo-github-actions
