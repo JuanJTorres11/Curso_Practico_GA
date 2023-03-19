@@ -1,4 +1,4 @@
-name: Step 4, TBD-step-4-name
+name: Paso 4, Aprende a usar los distintos Contextos
 
 # This step triggers after TBD-step-4-event-desc
 # This step sets STEP to 5
@@ -8,8 +8,9 @@ name: Step 4, TBD-step-4-name
 # Reference https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
   workflow_dispatch:
-  # Add events that trigger this workflow
-  # TBD-step-4-event:
+  push:
+    branches:
+      - aprendiendo-github-actions
 
 # Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 permissions:
@@ -20,8 +21,8 @@ permissions:
 jobs:
   # Get the current step from .github/script/STEP so we can
   # limit running the main job when the learner is on the same step.
-  get_current_step:
-    name: Check current step number
+  obtener_paso_actual:
+    name: Verificar paso actual
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,9 +33,9 @@ jobs:
     outputs:
       current_step: ${{ steps.get_step.outputs.current_step }}
 
-  on_TBD-step-4-event:
-    name: On TBD-step-4-event
-    needs: get_current_step
+  aprende_contextos:
+    name: Aprende a usar los distintos Contextos
+    needs: obtener_paso_actual
 
     # We will only run this action when:
     # 1. This repository isn't the template repository
@@ -55,14 +56,19 @@ jobs:
         with:
           fetch-depth: 0 # Let's get all the branches
 
-      # TBD-step-4-additional-steps
+      # Verify the learner added the file contents
+      - name: Verificar contenido del nuevo workflow
+        run: ./.github/script/check-file.sh
+        env:
+          FILE: ".github/workflows/contextos.yml"
+          SEARCH: "name:"
 
       # Update README to close <details id=4> and open <details id=5>
       # and set STEP to '5'
-      - name: Update to step 5
+      - name: Actualizar a paso 5
         uses: skills/action-update-step@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 4
           to_step: 5
-          branch_name: tbd-branch-name
+          branch_name: aprendiendo-github-actions

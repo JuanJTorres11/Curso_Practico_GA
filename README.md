@@ -310,8 +310,27 @@ Los más usados son:
 
 ### :keyboard: Actividad: Usa los diferentes contextos
 
-1. TBD-paso-4-instrucciones.
+1. Vuelve a la rama en que estabamos trabajando (*aprendiendo-github-actions*).
+1. Navegue a la carpeta `.github/workflows/`, luego seleccione **Add file** y haga clic en **Create new file**.
+1. En el campo **Name your file...**, ingrese `contextos.yml`.
+1. Crea un workflow que incluya el uso de alguno de los contextos que vimos en clase.
 1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
+
+  <details id=1.1>
+  <summary><h3>Ayuda</h2></summary>
+    
+  Agregue el siguiente contenido al archivo `contextos.yml`:
+  ```yaml
+  name: contexto
+  on: push
+  jobs:
+    check-main:
+      if: ${{ github.ref == 'refs/heads/main' }}
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "Desplegando en la rama $GITHUB_REF"
+  ```
+  </details>
 
 </details>
 
