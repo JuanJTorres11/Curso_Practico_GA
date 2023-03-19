@@ -76,50 +76,51 @@ Primero, aprenderemos los conceptos básicos de GitHub Actions
 ### :keyboard: Actividad: Crea un workflow file
 
 1. Abra una nueva pestaña del navegador y siga los pasos de la segunda pestaña mientras lee las instrucciones de esta pestaña.
-1. Cree un Pull Request para ver todos los cambios que realizará a lo largo de este curso. Haga clic en la pestaña *Pull Requests*, haga clic en *New Pull Request*, establezca `base: main` y `compare: hola-mundo`.
+1. Cree un Pull Request para ver todos los cambios que realizará a lo largo de este curso. Haga clic en la pestaña *Pull Requests*, haga clic en *New Pull Request*, establezca `base: main` y `compare: aprendiendo-github-actions`.
 1. Vaya a la pestaña *Code*.
-1. En el menú desplegable de la rama *main*, haga clic en la rama *hola-mundo*.
+1. En el menú desplegable de la rama *main*, haga clic en la rama *aprendiendo-github-actions*.
+1. Agrega un script simple en tu lenguaje de programación preferido (Python, JavaScript, Go, Rust, etc.) que imprima un "Hola Mundo".
 1. Navegue a la carpeta `.github/workflows/`, luego seleccione **Add file** y haga clic en **Create new file**.
 1. En el campo **Name your file...**, ingrese `hola-mundo.yml`.
-1. Con lo aprendido hasta el momento, crea un workflow file que corra un archivo básico de tu lenguaje de programación favorito que imprima un "Hola Mundo".
+1. Con lo aprendido hasta el momento, crea un workflow file que corra el archivo del paso anterior que imprime el "Hola Mundo".
 1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
 
-<details id=1.1>
-<summary><h3>Ayuda</h2></summary>
-  
-Agregue el siguiente contenido al archivo `hola-mundo.yml`:
-   ```yaml
-   name: aprendiendo-github-actions
-   run-name: ¡Estoy aprendiendo GitHub Actions!
-   on: [push]
-   jobs:
-     hola-mundo:
-       runs-on: ubuntu-latest
-       steps:
-         - name: Checkout
-           uses: actions/checkout@v3
-         - name: Definir variable
-           run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
-         - name: Correr script
-           run: python hola_mundo.py
-   ```
- Crea un archivo llamado `hola_mundo.py` en la raiz del repositorio y agrega el siguiente contenido:
-   ```python
-   import os
+  <details id=1.1>
+  <summary><h3>Ayuda</h2></summary>
+
+  Crea un archivo llamado `hola_mundo.py` en la raiz del repositorio y agrega el siguiente contenido:
+  ```python
+  import os
 
 
-   def main():
-       nombre = os.getenv("USERNAME")
-       print(f"¡Hola, {nombre} desde GitHub!")
+  def main():
+      nombre = os.getenv("USERNAME")
+      print(f"¡Hola, {nombre} desde GitHub!")
 
 
-   if __name__ == "__main__":
-       main()
-   ```
-  
-</details>
+  if __name__ == "__main__":
+      main()
+  ```
 
+  Agregue el siguiente contenido al archivo `hola-mundo.yml`:
+  ```yaml
+  name: aprendiendo-github-actions
+  run-name: ¡Estoy aprendiendo GitHub Actions!
+  on: [push]
+  jobs:
+    hola-mundo:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Definir variable
+          run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+        - name: Correr script
+          run: python hola_mundo.py
+  ```
 
+    
+  </details>
 
 </details>
 
@@ -131,7 +132,7 @@ Agregue el siguiente contenido al archivo `hola-mundo.yml`:
 -->
 
 <details id=2>
-<summary><h2>Paso 2: Aprende sobre los diferentes Triggers</h2></summary>
+<summary><h2>Paso 2: Conoce los principales Triggers</h2></summary>
 
 _¡Creaste tu primer Workflow! :tada:_
 
@@ -148,8 +149,73 @@ Ahora que conoces los componentes básicos de un workflow en GitHub Actions pode
 
 ### :keyboard: Actividad: Expermienta con los distintos Triggers
 
-1. TBD-paso-2-instrucciones.
+1. Vuelve a la rama en que estabamos trabajando (*aprendiendo-github-actions*).
+1. Navegue a la carpeta `.github/workflows/`, luego seleccione **Add file** y haga clic en **Create new file**.
+1. En el campo **Name your file...**, ingrese `triggers.yml`.
+1. Crea un workflow que incluya al menos 3 de los triggers que vimos en la clase y llame al mismo script del "Hola Mundo" que el reto anterior.
 1. Espere unos 20 segundos y luego actualice esta página para el siguiente paso.
+
+  <details id=1.1>
+  <summary><h3>Ayuda</h2></summary>
+    
+  Agregue el siguiente contenido al archivo `triggers.yml`:
+  ```yaml
+  name: Triggers
+  on:
+    push:
+      branches:
+        - master
+    pull_request:
+      types: [opened, synchronize, reopened]
+      paths:
+        - '**.py'
+    issues:
+      types:
+        - labeled
+    workflow_dispatch:
+      inputs:
+        lenguaje_favorito:
+          description: 'Lenguaje favorito'
+          default: Python
+          required: true
+          type: choice
+          options:
+          - Python
+          - JavaScript
+          - Go
+        nombre:
+          description: 'Tu nombre'
+          required: true
+          default: Juan
+          type: string
+    schedule:
+      - cron:  '15 22 * * *'
+  jobs:
+    hola-mundo-manual:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Definir nombre
+          run: echo "USERNAME=${{ inputs.nombre }}" >> $GITHUB_ENV
+        - name: Definir lenguaje
+          run: echo "LANGUAGE=${{ inputs.lenguaje_favorito }}" >> $GITHUB_ENV
+        - name: Correr script
+          run: python hola_lenguaje.py
+    hola-mundo:
+      if: ${{ github.event_name != 'workflow_dispatch' }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Definir variable
+          run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+        - name: Correr script
+          run: python hola_mundo.py
+
+  ```
+  </details>
+
 
 </details>
 

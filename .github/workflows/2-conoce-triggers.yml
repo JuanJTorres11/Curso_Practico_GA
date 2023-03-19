@@ -1,4 +1,4 @@
-name: Step 2, TBD-step-2-name
+name: Step 2, Conoce los principales Triggers
 
 # This step triggers after TBD-step-2-event-desc
 # This step sets STEP to 3
@@ -8,8 +8,9 @@ name: Step 2, TBD-step-2-name
 # Reference https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
   workflow_dispatch:
-  # Add events that trigger this workflow
-  # TBD-step-2-event:
+  push:
+    branches:
+      - hola-mundo
 
 # Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 permissions:
@@ -20,8 +21,8 @@ permissions:
 jobs:
   # Get the current step from .github/script/STEP so we can
   # limit running the main job when the learner is on the same step.
-  get_current_step:
-    name: Check current step number
+  obtener_paso_actual:
+    name: Verificar paso actual
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,9 +33,9 @@ jobs:
     outputs:
       current_step: ${{ steps.get_step.outputs.current_step }}
 
-  on_TBD-step-2-event:
-    name: On TBD-step-2-event
-    needs: get_current_step
+  aprende_triggers:
+    name: Crear Hola Mundo
+    needs: obtener_paso_actual
 
     # We will only run this action when:
     # 1. This repository isn't the template repository
@@ -55,14 +56,19 @@ jobs:
         with:
           fetch-depth: 0 # Let's get all the branches
 
-      # TBD-step-2-additional-steps
+      # Verify the learner added the file contents
+      - name: Verificar contenido del nuevo workflow
+        run: ./.github/script/check-file.sh
+        env:
+          FILE: ".github/workflows/triggers.yml"
+          SEARCH: "name:"
 
       # Update README to close <details id=2> and open <details id=3>
       # and set STEP to '3'
-      - name: Update to step 3
+      - name: Actualizar a paso 3
         uses: skills/action-update-step@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 2
           to_step: 3
-          branch_name: tbd-branch-name
+          branch_name: aprendiendo-github-actions
