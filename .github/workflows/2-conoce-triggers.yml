@@ -1,4 +1,4 @@
-name: Step 2, Conoce los principales Triggers
+name: Paso 2, Conoce los principales Triggers
 
 # This step triggers after TBD-step-2-event-desc
 # This step sets STEP to 3
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - hola-mundo
+      - aprendiendo-github-actions
 
 # Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 permissions:
@@ -33,8 +33,8 @@ jobs:
     outputs:
       current_step: ${{ steps.get_step.outputs.current_step }}
 
-  aprende_triggers:
-    name: Crear Hola Mundo
+  conoce_triggers:
+    name: Conoce los principales Triggers
     needs: obtener_paso_actual
 
     # We will only run this action when:
