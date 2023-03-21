@@ -104,7 +104,7 @@ Primero, aprenderemos los conceptos básicos de GitHub Actions
 
   Agregue el siguiente contenido al archivo `hola-mundo.yml`:
   ```yaml
-  name: aprendiendo-github-actions
+  name: Aprendiendo GitHub Actions
   run-name: ¡Estoy aprendiendo GitHub Actions!
   on: [push]
   jobs:
@@ -250,7 +250,7 @@ Puedes combinar valores literales, referencias de contexto y funciones usando op
     
   Agregue el siguiente contenido al archivo `expresiones.yml`:
   ```yaml
-  name: Expression
+  name: Expresiones
   on:
     workflow_dispatch:
       inputs:
@@ -321,7 +321,7 @@ Los más usados son:
     
   Agregue el siguiente contenido al archivo `contextos.yml`:
   ```yaml
-  name: contexto
+  name: Contexto
   on: push
   jobs:
     check-main:
@@ -414,7 +414,7 @@ Has aprendido sobre:
 ### ¿Qué sigue?
 
 - Puedes crear flujos de Integración Continúa (CI) para tus proyectos.
-- Puedes crear flujos de Despliegue (CD para tus proyectos.
+- Puedes crear flujos de Despliegue (CD) para tus proyectos.
 - Puedes automatizar todo tipo de tareas en tus repositorios para mantener un mejor orden y control.
 
 </details>
